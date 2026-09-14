@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<title>एमपी न्यूज़ नेटवर्क — मध्य प्रदेश की ताज़ा और ब्रेकिंग हिंदी समाचार वेबसाइट</title>
+<meta name="description" content="एमपी न्यूज़ नेटवर्क: मध्य प्रदेश, भारत और दुनिया की ब्रेकिंग न्यूज़, राजनीति, खेल, बिजनेस, मनोरंजन, नौकरी और शिक्षा की खबरें हिंदी में।">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<link rel="icon" href="assets/logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,300..600,0..1,-50..200&family=Noto+Sans:wght@400;600;700;800&family=Noto+Sans+Devanagari:wght@400;600;700;800&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ============ TOP UTILITY BAR (desktop only) ============ -->
+<div class="topbar hide-mobile">
+  <div class="container">
+    <div class="topbar-left">
+      <span><span class="material-symbols-outlined icon-sm">calendar_today</span>मंगलवार, 8 सितंबर 2026</span>
+      <span class="divider"></span>
+      <span class="city"><span class="material-symbols-outlined icon-sm">location_on</span><strong>भोपाल</strong><span class="material-symbols-outlined icon-sm">expand_more</span></span>
+    </div>
+    <div class="topbar-right">
+      <a href="#epaper"><span class="material-symbols-outlined icon-sm">newspaper</span>ई-पेपर<span class="badge-live">LIVE</span></a>
+      <span class="divider"></span>
+      <a href="#"><span class="material-symbols-outlined icon-sm">star</span>Google News पर फॉलो करें</a>
+      <span class="divider"></span>
+      <a href="#"><span class="material-symbols-outlined icon-sm">smartphone</span>ऐप डाउनलोड</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <div class="header-main">
+    <div class="container">
+      <a href="#home" class="logo-wrap">
+        <img src="assets/logo.jpg" alt="एमपी न्यूज़ नेटवर्क लोगो">
+        <span class="logo-text">
+          <span class="en">MP NEWS NETWORK</span>
+          <span class="hi">एमपी न्यूज़ नेटवर्क</span>
+        </span>
+      </a>
+      <div class="search-wrap">
+        <span class="material-symbols-outlined search-icon">search</span>
+        <input type="text" placeholder="सर्च करें: विधानसभा चुनाव, मौसम, भोपाल...">
+        <button>खोजें</button>
+      </div>
+      <div class="header-actions">
+        <a class="btn-outline hide-mobile" href="#epaper"><span class="material-symbols-outlined">description</span><span>ई-पेपर पढ़ें</span></a>
+        <button class="icon-btn hide-mobile" aria-label="बुकमार्क"><span class="material-symbols-outlined">bookmark</span></button>
+        <button class="icon-btn hide-mobile" aria-label="सूचनाएं"><span class="material-symbols-outlined">notifications</span></button>
+        <div class="avatar hide-mobile"><span class="material-symbols-outlined">person</span></div>
+        <button class="icon-btn hide-desktop" id="mobileSearchToggle" aria-label="खोजें"><span class="material-symbols-outlined">search</span></button>
+        <button class="icon-btn hide-desktop" id="drawerToggle" aria-label="मेनू"><span class="material-symbols-outlined">menu</span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile search bar -->
+  <div class="mobile-search-bar" id="mobileSearchBar" style="display:none">
+    <div class="search-wrap">
+      <span class="material-symbols-outlined search-icon">search</span>
+      <input type="text" placeholder="सर्च करें...">
+      <button>खोजें</button>
+    </div>
+  </div>
+
+  <!-- Desktop nav -->
+  <nav class="main-nav hide-mobile">
+    <div class="container">
+      <a href="#home" class="active">होम</a>
+      <a href="#mp-news">मध्य प्रदेश</a>
+      <a href="#national">देश</a>
+      <a href="#world">विदेश</a>
+      <a href="#politics">राजनीति</a>
+      <a href="#business">बिजनेस</a>
+      <a href="#sports">खेल</a>
+      <a href="#entertainment">मनोरंजन</a>
+      <a href="#tech-auto">टेक-ऑटो</a>
+      <a href="#jobs">जॉब्स-एजुकेशन</a>
+      <a href="#lifestyle">लाइफस्टाइल</a>
+      <a href="#astrology">धर्म-ज्योतिष</a>
+      <a href="#opinion">ओपिनियन</a>
+    </div>
+  </nav>
+
+  <!-- Breaking ticker -->
+  <div class="ticker">
+    <div class="container">
+      <span class="ticker-label"><span class="dot-ping"></span>ब्रेकिंग न्यूज़</span>
+      <div class="ticker-body">
+        <div class="ticker-track">
+          <span class="ticker-item"><span class="ticker-time">11:20 AM</span>भोपाल में विधानसभा सत्र शुरू, मानसून सत्र में 12 विधेयक पेश होंगे</span>
+          <span class="ticker-item"><span class="ticker-time">11:05 AM</span>इंदौर में मेट्रो ट्रायल रन सफल, अगले महीने से यात्री सेवा शुरू</span>
+          <span class="ticker-item"><span class="ticker-time">10:42 AM</span>नर्मदा नदी का जलस्तर बढ़ा, प्रशासन ने जारी किया अलर्ट</span>
+          <span class="ticker-item"><span class="ticker-time">11:20 AM</span>भोपाल में विधानसभा सत्र शुरू, मानसून सत्र में 12 विधेयक पेश होंगे</span>
+          <span class="ticker-item"><span class="ticker-time">11:05 AM</span>इंदौर में मेट्रो ट्रायल रन सफल, अगले महीने से यात्री सेवा शुरू</span>
+          <span class="ticker-item"><span class="ticker-time">10:42 AM</span>नर्मदा नदी का जलस्तर बढ़ा, प्रशासन ने जारी किया अलर्ट</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trending strip -->
+  <div class="trending hide-mobile">
+    <div class="container">
+      <span class="trending-label"><span class="material-symbols-outlined icon-sm">trending_up</span>ट्रेंडिंग:</span>
+      <a href="#">नर्मदा जलस्तर</a><span class="sep">|</span>
+      <a href="#">भोपाल मेट्रो</a><span class="sep">|</span>
+      <a href="#">मानसून सत्र</a><span class="sep">|</span>
+      <a href="#">इंदौर स्वच्छता रैंकिंग</a><span class="sep">|</span>
+      <a href="#">MP बोर्ड रिजल्ट</a><span class="sep">|</span>
+      <a href="#">सेंसेक्स अपडेट</a>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile drawer -->
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-head">
+    <span class="logo-text" style="border:none"><span class="hi" style="font-size:16px">एमपी न्यूज़ नेटवर्क</span></span>
+    <button class="icon-btn" id="drawerClose"><span class="material-symbols-outlined">close</span></button>
+  </div>
+  <a href="#home">होम</a>
+  <a href="#mp-news">मध्य प्रदेश</a>
+  <a href="#national">देश</a>
+  <a href="#world">विदेश</a>
+  <a href="#politics">राजनीति</a>
+  <a href="#business">बिजनेस</a>
+  <a href="#sports">खेल</a>
+  <a href="#entertainment">मनोरंजन</a>
+  <a href="#tech-auto">टेक-ऑटो</a>
+  <a href="#jobs">जॉब्स-एजुकेशन</a>
+  <a href="#lifestyle">लाइफस्टाइल</a>
+  <a href="#astrology">धर्म-ज्योतिष</a>
+  <a href="#opinion">ओपिनियन</a>
+  <a href="#epaper">ई-पेपर</a>
+</div>
+
+<!-- ============ MAIN HOME GRID ============ -->
+<main class="home-main" id="home">
+  <div class="home-grid">
+
+    <!-- LEFT RAIL: Top headlines fast feed -->
+    <aside class="card rail-card">
+      <div class="rail-head">
+        <span class="h"><span class="bar"></span>टॉप हेडलाइंस</span>
+        <span class="live-tag">LIVE FEED</span>
+      </div>
+
+      <article class="feed-item">
+        <div class="flex-1">
+          <span class="cat-chip chip-mp">मध्य प्रदेश</span>
+          <h3>भोपाल में मेट्रो का दूसरा फेज शुरू: CM ने हरी झंडी दिखाई, 14 नए स्टेशन जुड़े</h3>
+          <div class="meta"><span>15 मिनट पहले</span></div>
+        </div>
+        <div class="thumb"><img src="https://picsum.photos/seed/mpnews1/500/375" alt="" loading="lazy"></div>
+      </article>
+
+      <article class="feed-item">
+        <div class="flex-1">
+          <span class="cat-chip chip-politics">राजनीति</span>
+          <h3>विधानसभा मानसून सत्र आज से: विपक्ष किसान कर्जमाफी पर घेरेगा सरकार को</h3>
+          <div class="meta"><span>32 मिनट पहले</span></div>
+        </div>
+        <div class="thumb tone-red"><img src="https://picsum.photos/seed/mpnews2/500/375" alt="" loading="lazy"></div>
+      </article>
+
+      <article class="feed-item">
+        <div class="flex-1">
+          <span class="cat-chip chip-world">विदेश</span>
+          <h3>पुतिन BRICS समिट के लिए भारत आएंगे: 11 सितंबर को PM मोदी से मुलाकात तय</h3>
+          <div class="meta"><span>45 मिनट पहले</span></div>
+        </div>
+        <div class="thumb tone-biz"><img src="https://picsum.photos/seed/mpnews3/500/375" alt="" loading="lazy"></div>
+      </article>
+
+      <article class="feed-item">
+        <div class="flex-1">
+          <span class="cat-chip chip-mp" style="background:rgba(245,130,31,.12);color:var(--saffron)">मौसम</span>
+          <h3>नर्मदा उफान पर: होशंगाबाद-जबलपुर में हाई अलर्ट, 40 गांव प्रभावित</h3>
+          <div class="meta"><span>1 घंटा पहले</span></div>
+        </div>
+        <div class="thumb tone-saffron"><img src="https://picsum.photos/seed/mpnews4/500/375" alt="" loading="lazy"></div>
+      </article>
+
+      <article class="feed-item">
+        <div class="flex-1">
+          <span class="cat-chip chip-life">अनोखी खबर</span>
+          <h3>इंदौर के छात्र ने बनाई सोलर साइकिल: बिना पेट्रोल 60 KM तक चलेगी</h3>
+          <div class="meta"><span>2 घंटे पहले</span></div>
+        </div>
+        <div class="thumb tone-life"><img src="https://picsum.photos/seed/mpnews5/500/375" alt="" loading="lazy"></div>
+      </article>
+    </aside>
+
+    <!-- CENTER: hero + secondary + two-col -->
+    <section style="display:flex;flex-direction:column;gap:20px">
+
+      <!-- HERO -->
+      <article class="card hero-card">
+        <div class="hero-media">
+          <img src="https://picsum.photos/seed/mpnews-hero/900/506" alt="" loading="lazy">
+          <div class="hero-badges">
+            <span class="badge-explainer"><span class="dot-ping" style="width:6px;height:6px"></span>नेटवर्क एक्सप्लेनर</span>
+            <span class="badge-exclusive">एक्सक्लूसिव</span>
+          </div>
+          <span class="play-pill" style="bottom:12px;right:12px;font-size:12px;padding:5px 10px"><span class="material-symbols-outlined">play_circle</span>3:25</span>
+        </div>
+        <div class="hero-body">
+          <h1><span class="lead">आज का एक्सप्लेनर:</span> मध्य प्रदेश में नई औद्योगिक नीति लागू, 50 हजार करोड़ के निवेश का दावा</h1>
+          <p>राज्य सरकार ने नई औद्योगिक निवेश नीति की घोषणा की है, जिसके तहत इंदौर-भोपाल-पीथमपुर बेल्ट में बड़े निवेश की उम्मीद है। जानिए नीति की खास बातें और इसका असर रोजगार पर...</p>
+          <div class="hero-foot">
+            <div class="meta"><span style="color:var(--ink);font-weight:700">1.8 लाख पाठकों ने पढ़ा</span><span>•</span><span>40 मिनट पहले</span></div>
+            <div style="display:flex;align-items:center;gap:8px">
+              <button class="btn-primary"><span class="material-symbols-outlined" style="font-size:15px">play_arrow</span>वीडियो देखें</button>
+              <button class="icon-btn" style="background:#fff;box-shadow:var(--shadow)"><span class="material-symbols-outlined">bookmark_add</span></button>
+              <button class="icon-btn" style="background:#fff;box-shadow:var(--shadow)"><span class="material-symbols-outlined">share</span></button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- SECONDARY SPLIT -->
+      <article class="card split-card">
+        <div class="split-grid">
+          <div>
+            <span class="cat-chip chip-mp">मध्य प्रदेश एक्सप्लेनर</span>
+            <h2 style="font-size:17px;font-weight:700;line-height:1.4">सागर में जहरीली शराब कांड: अब तक 22 मौतें, जानिए मिथाइल अल्कोहल शरीर में कैसे जहर फैलाता है</h2>
+            <p style="font-size:13px;color:var(--ink-soft);margin-top:6px;line-height:1.6">सागर शराब कांड में मिथाइल अल्कोहल की मात्रा 80% पाई गई। जानें कैसे यह केमिकल लिवर और आंखों की रोशनी को नुकसान पहुंचाता है।</p>
+            <div class="meta" style="margin-top:12px"><span style="color:var(--ink);font-weight:600">2:24 मिनट वीडियो</span><span>•</span><span>सागर ग्राउंड रिपोर्ट</span></div>
+          </div>
+          <div class="thumb tone-red"><img src="https://picsum.photos/seed/mpnews6/500/375" alt="" loading="lazy"></div>
+        </div>
+      </article>
+
+      <!-- TWO COL FEATURE -->
+      <div class="two-col">
+        <div class="card feature-card">
+          <div>
+            <span class="kicker" style="color:var(--business)">बिजनेस केस स्टडी</span>
+            <h3>इंदौर की स्टार्टअप ने 19 साल में खड़ा किया 300 करोड़ का ब्रांड, जानिए पूरी कहानी</h3>
+          </div>
+          <div class="feature-foot"><span>कल लॉन्च इवेंट</span><span style="color:var(--blue);font-weight:700">पूरी कहानी पढ़ें ➔</span></div>
+        </div>
+        <div class="card feature-card">
+          <div>
+            <span class="kicker" style="color:var(--politics)">कोर्ट रूम रिपोर्ट</span>
+            <h3>ग्वालियर कोर्ट का बड़ा फैसला: 5 महीने में 23 मामलों में मृत्युदंड, जानिए वजह</h3>
+          </div>
+          <div class="feature-foot"><span>ग्वालियर</span><span style="font-weight:600;color:var(--ink)">100+ केस</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RIGHT RAIL -->
+    <aside style="display:flex;flex-direction:column;gap:16px">
+
+      <!-- Market widget -->
+      <div class="card widget">
+        <div class="widget-head">
+          <span class="h"><span class="material-symbols-outlined" style="color:var(--business);font-size:18px">monitoring</span>बाजार व कमोडिटी</span>
+          <span style="font-size:11px;color:var(--subtle)">15:30 IST</span>
+        </div>
+        <div class="market-row">
+          <div><span class="name">BSE SENSEX</span><span class="val">75,578.40</span></div>
+          <div style="text-align:right"><span class="chg chg-down">▼ -555.20</span><br><span class="chg chg-down">(-0.73%)</span></div>
+        </div>
+        <div class="market-row">
+          <div><span class="name">NSE NIFTY 50</span><span class="val">22,980.15</span></div>
+          <div style="text-align:right"><span class="chg chg-down">▼ -144.60</span><br><span class="chg chg-down">(-0.62%)</span></div>
+        </div>
+        <div class="rate-grid">
+          <div class="rate-box"><span class="name">सोना (10g)</span><span class="val">₹1.53 लाख</span><span class="chg">+₹374 ▲</span></div>
+          <div class="rate-box"><span class="name">चांदी (1kg)</span><span class="val">₹2.34 लाख</span><span class="chg">+₹2,176 ▲</span></div>
+        </div>
+      </div>
+
+      <!-- Google follow promo -->
+      <div class="card promo-card">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <span class="material-symbols-outlined" style="font-size:30px;opacity:.9">newspaper</span>
+          <span style="font-size:10px;font-weight:700;background:rgba(255,255,255,.2);padding:3px 8px;border-radius:4px;text-transform:uppercase">Google Partner</span>
+        </div>
+        <p>एमपी न्यूज़ नेटवर्क को Google News पर पसंदीदा सोर्स बनाएं</p>
+        <a class="cta" href="#">फॉलो करें<span class="material-symbols-outlined" style="font-size:15px">arrow_forward</span></a>
+      </div>
+
+      <!-- Network original -->
+      <div class="card widget">
+        <div class="widget-head">
+          <span class="h"><span style="width:8px;height:8px;border-radius:50%;background:var(--blue);display:inline-block"></span>नेटवर्क ओरिजिनल</span>
+          <a href="#" style="font-size:11px;color:var(--blue);font-weight:700">सभी देखें</a>
+        </div>
+        <div class="thumb tone-sports" style="aspect-ratio:16/10;margin-bottom:8px">
+          <img src="https://picsum.photos/seed/mpnews7/500/375" alt="" loading="lazy">
+          <span class="play-pill"><span class="material-symbols-outlined">play_arrow</span>4:03</span>
+        </div>
+        <h4 style="font-size:13.5px;font-weight:700;line-height:1.4">मंडे मेगा स्टोरी: मध्य प्रदेश के जंगलों में बाघों की संख्या फिर बढ़ी, नई गणना रिपोर्ट जारी</h4>
+        <span style="font-size:11px;color:var(--subtle);margin-top:6px;display:block">वन्यजीव व पर्यावरण रिपोर्ट</span>
+      </div>
+
+      <!-- Ground report -->
+      <div class="card widget">
+        <span style="font-size:11px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.03em">ग्राउंड रिपोर्ट</span>
+        <h4 style="font-size:13.5px;font-weight:700;line-height:1.4;margin-top:6px">रीवा में किसानों का आंदोलन तेज: उचित मुआवजे की मांग को लेकर धरना जारी</h4>
+        <div class="meta" style="margin-top:10px"><span class="material-symbols-outlined" style="font-size:14px">timer</span><span>1:49 वीडियो रिपोर्ट</span></div>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<!-- ============ MP / CITY NEWS ============ -->
+<section class="wide-section alt" id="mp-news">
+  <div class="container">
+    <div class="section-head">
+      <div class="title"><span class="bar" style="background:var(--blue)"></span><h2>मध्य प्रदेश — शहर की खबरें</h2></div>
+      <a class="more" href="#">सभी MP खबरें देखें ➔</a>
+    </div>
+
+    <div class="city-tabs" id="cityTabs">
+      <button class="city-tab active" data-city="bhopal">भोपाल</button>
+      <button class="city-tab" data-city="indore">इंदौर</button>
+      <button class="city-tab" data-city="jabalpur">जबलपुर</button>
+      <button class="city-tab" data-city="gwalior">ग्वालियर</button>
+      <button class="city-tab" data-city="ujjain">उज्जैन</button>
+      <button class="city-tab" data-city="sagar">सागर</button>
+      <button class="city-tab" data-city="rewa">रीवा</button>
+    </div>
+
+    <div class="city-panel active" data-panel="bhopal">
+      <article class="feed-item"><div class="flex-1"><span class="cat-chip chip-mp">भोपाल</span><h3>भोपाल में स्मार्ट सिटी प्रोजेक्ट का दूसरा चरण शुरू, 12 चौराहों पर बनेंगे स्काईवॉक</h3><div class="meta"><span>30 मिनट पहले • 8K शेयर</span></div></div><div class="thumb"><img src="https://picsum.photos/seed/mpnews8/500/375" alt="" loading="lazy"></div></article>
+      <article class="feed-item"><div class="flex-1"><span class="cat-chip chip-politics">भोपाल</span><h3>राजधानी में डेंगू के मामले बढ़े: नगर निगम ने शुरू किया फॉगिंग अभियान</h3><div class="meta"><span>2 घंटे पहले • 4K शेयर</span></div></div><div class="thumb tone-red"><img src="https://picsum.photos/seed/mpnews9/500/375" alt="" loading="lazy"></div></article>
+    </div>
+
+    <div class="city-panel" data-panel="indore">
+      <article class="feed-item"><div class="flex-1"><span class="cat-chip chip-mp">इंदौर</span><h3>इंदौर लगातार 7वीं बार बना देश का सबसे स्वच्छ शहर: स्वच्छता सर्वेक्षण में टॉप रैंकिंग</h3><div class="meta"><span>1 घंटा पहले • 22K शेयर</span></div></div><div class="thumb tone-biz"><img src="https://picsum.photos/seed/mpnews10/500/375" alt="" loading="lazy"></div></article>
+      <article class="feed-item"><div class="flex-1"><span class="cat-chip chip-life">इंदौर</span><h3>मेट्रो ट्रायल रन सफल: अगले महीने से यात्रियों के लिए सेवा शुरू होगी</h3><div class="meta"><span>3 घंटे पहले • 11K शेयर</span></div></div><div class="thumb tone-life"><img src="https://picsum.photos/seed/mpnews11/500/375" alt="" loading="lazy"></div></article>
+    </div>
+
+    <div class="city-panel" data-panel="jabalpur">
+      <article class="feed-item"><div class="flex-1"><span class="cat-chip chip-mp">जबलपुर</span><h3>नर्मदा का जलस्तर बढ़ा, प्रशासन ने निचली बस्तियों में अलर्ट जारी किया</h3><div class="meta"><span>45 मिनट पहले • 6K शेयर</span></div></div><div class="thumb tone-saffron"><img src="https://picsum.photos/seed/mpnews12/500/375" alt="" loading="lazy"></div></article>
+      <article class="feed-item"><div class="flex-1"><span class="cat-chip chip-sports">जबलपुर</span><h3>जबलपुर में नया स्पोर्ट्स स्टेडियम बनकर तैयार, राष्ट्रीय स्तर की प्रतियोगिताएं होंगी</h3><div class="meta"><span>4 घंटे पहले • 3K शेयर</span></div></div><div class="thumb tone-sports"><img src="https://picsum.photos/seed/mpnews13/500/375" alt="" loading="lazy"></div></article>
+    </div>
+
+    <div class="city-panel" data-panel="gwalior">
+      <article class="feed-item"><div class="flex-1"><span class="cat-chip chip-politics">ग्वालियर</span><h3>ग्वालियर कोर्ट का बड़ा फैसला: भूमि विवाद मामले में ऐतिहासिक निर्णय</h3><div class="meta"><span>2 घंटे पहले • 5K शेयर</span></div></div><div class="thumb tone-red"><img src="https://picsum.photos/seed/mpnews14/500/375" alt="" loading="lazy"></div></article>
+      <article class="feed-item"><div class="flex-1"><span class="cat-chip chip-mp">ग्वालियर</span><h3>ग्वालियर किला परिसर में हुआ भव्य लाइट एंड साउंड शो का शुभारंभ</h3><div class="meta"><span>5 घंटे पहले • 7K शेयर</span></div></div><div class="thumb"><img src="https://picsum.photos/seed/mpnews15/500/375" alt="" loading="lazy"></div></article>
+    </div>
+
+    <div class="city-panel" data-panel="ujjain">
+      <article class="feed-item"><div class="flex-1"><span class="cat-chip chip-life">उज्जैन</span><h3>महाकाल मंदिर में श्रावण मास पर उमड़ा श्रद्धालुओं का सैलाब, विशेष व्यवस्था लागू</h3><div class="meta"><span>1 घंटा पहले • 15K शेयर</span></div></div><div class="thumb tone-life"><img src="https://picsum.photos/seed/mpnews16/500/375" alt="" loading="lazy"></div></article>
+      <article class="feed-item"><div class="flex-1"><span class="cat-chip chip-mp">उज्जैन</span><h3>सिंहस्थ 2028 की तैयारियां तेज: क्षिप्रा नदी सफाई परियोजना को मंजूरी</h3><div class="meta"><span>3 घंटे पहले • 9K शेयर</span></div></div><div class="thumb"><img src="https://picsum.photos/seed/mpnews17/500/375" alt="" loading="lazy"></div></article>
+    </div>
+
+    <div class="city-panel" data-panel="sagar">
+      <article class="feed-item"><div class="flex-1"><span class="cat-chip chip-politics">सागर</span><h3>सागर जहरीली शराब कांड: पुलिस ने 6 आरोपियों को किया गिरफ्तार</h3><div class="meta"><span>30 मिनट पहले • 18K शेयर</span></div></div><div class="thumb tone-red"><img src="https://picsum.photos/seed/mpnews18/500/375" alt="" loading="lazy"></div></article>
+      <article class="feed-item"><div class="flex-1"><span class="cat-chip chip-mp">सागर</span><h3>सागर विश्वविद्यालय में नया इंजीनियरिंग कैंपस शुरू होगा अगले सत्र से</h3><div class="meta"><span>6 घंटे पहले • 2K शेयर</span></div></div><div class="thumb"><img src="https://picsum.photos/seed/mpnews19/500/375" alt="" loading="lazy"></div></article>
+    </div>
+
+    <div class="city-panel" data-panel="rewa">
+      <article class="feed-item"><div class="flex-1"><span class="cat-chip chip-mp">रीवा</span><h3>रीवा में किसानों का आंदोलन तेज: उचित मुआवजे की मांग को लेकर धरना जारी</h3><div class="meta"><span>2 घंटे पहले • 4K शेयर</span></div></div><div class="thumb tone-saffron"><img src="https://picsum.photos/seed/mpnews20/500/375" alt="" loading="lazy"></div></article>
+      <article class="feed-item"><div class="flex-1"><span class="cat-chip chip-life">रीवा</span><h3>रीवा एयरपोर्ट से जल्द शुरू होंगी नई उड़ानें, केंद्र सरकार ने दी मंजूरी</h3><div class="meta"><span>5 घंटे पहले • 6K शेयर</span></div></div><div class="thumb tone-life"><img src="https://picsum.photos/seed/mpnews21/500/375" alt="" loading="lazy"></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VIDEO & WEB STORIES (REELS) ============ -->
+<section class="wide-section">
+  <div class="container">
+    <div class="section-head">
+      <div class="title"><span class="bar" style="background:var(--entertainment)"></span><h2>वीडियो न्यूज़ व वेब स्टोरीज़</h2></div>
+      <a class="more" href="#">सभी देखें ➔</a>
+    </div>
+    <div class="reel-strip">
+      <div class="reel-card"><img src="https://picsum.photos/seed/mpnews-reel1/300/533" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"><div class="reel-overlay"><span class="cat">एक्सप्लेनर</span><span class="t">नई औद्योगिक नीति के 5 बड़े फायदे</span><span class="dur"><span class="material-symbols-outlined" style="font-size:11px">play_arrow</span>0:53</span></div></div>
+      <div class="reel-card" style="background:linear-gradient(160deg,#38BDF8,#0284C7)"><img src="https://picsum.photos/seed/mpnews-reel2/300/533" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"><div class="reel-overlay"><span class="cat">खेल</span><span class="t">दलीप ट्रॉफी: तिलक का शतक</span><span class="dur"><span class="material-symbols-outlined" style="font-size:11px">play_arrow</span>0:40</span></div></div>
+      <div class="reel-card" style="background:linear-gradient(160deg,#FBBF24,#F5821F)"><img src="https://picsum.photos/seed/mpnews-reel3/300/533" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"><div class="reel-overlay"><span class="cat">मौसम</span><span class="t">नर्मदा में उफान, गांव खाली कराए</span><span class="dur"><span class="material-symbols-outlined" style="font-size:11px">play_arrow</span>0:27</span></div></div>
+      <div class="reel-card" style="background:linear-gradient(160deg,#34D399,#059669)"><img src="https://picsum.photos/seed/mpnews-reel4/300/533" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"><div class="reel-overlay"><span class="cat">बिजनेस</span><span class="t">सोना ₹374 महंगा, जानें वजह</span><span class="dur"><span class="material-symbols-outlined" style="font-size:11px">play_arrow</span>0:55</span></div></div>
+      <div class="reel-card" style="background:linear-gradient(160deg,#A78BFA,#7C3AED)"><img src="https://picsum.photos/seed/mpnews-reel5/300/533" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"><div class="reel-overlay"><span class="cat">धर्म</span><span class="t">महाकाल दर्शन: श्रावण भस्म आरती</span><span class="dur"><span class="material-symbols-outlined" style="font-size:11px">play_arrow</span>0:46</span></div></div>
+      <div class="reel-card"><img src="https://picsum.photos/seed/mpnews-reel6/300/533" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"><div class="reel-overlay"><span class="cat">मनोरंजन</span><span class="t">भोपाल फिल्म फेस्टिवल शुरू</span><span class="dur"><span class="material-symbols-outlined" style="font-size:11px">play_arrow</span>0:38</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NATIONAL & INTERNATIONAL ============ -->
+<section class="wide-section alt" id="national">
+  <div class="container">
+    <div class="section-head">
+      <div class="title"><span class="bar" style="background:var(--politics)"></span><h2>देश-विदेश</h2></div>
+      <a class="more" href="#" id="world">सभी देखें ➔</a>
+    </div>
+    <div class="story-grid">
+      <div class="card story-card"><div class="thumb tone-red"><img src="https://picsum.photos/seed/mpnews22/500/375" alt="" loading="lazy"></div><div class="body"><span class="cat-chip chip-politics">देश</span><h3>संसद का मानसून सत्र: आज पेश होंगे 5 अहम विधेयक</h3><div class="meta" style="margin-top:6px"><span>20 मिनट पहले</span></div></div></div>
+      <div class="card story-card"><div class="thumb tone-biz"><img src="https://picsum.photos/seed/mpnews23/500/375" alt="" loading="lazy"></div><div class="body"><span class="cat-chip chip-world">विदेश</span><h3>पुतिन BRICS समिट के लिए भारत आएंगे, 11 सितंबर को बैठक</h3><div class="meta" style="margin-top:6px"><span>1 घंटा पहले</span></div></div></div>
+      <div class="card story-card"><div class="thumb"><img src="https://picsum.photos/seed/mpnews24/500/375" alt="" loading="lazy"></div><div class="body"><span class="cat-chip chip-politics">देश</span><h3>चुनाव आयोग की नई गाइडलाइन, EVM पर बड़ा फैसला</h3><div class="meta" style="margin-top:6px"><span>2 घंटे पहले</span></div></div></div>
+      <div class="card story-card"><div class="thumb tone-saffron"><img src="https://picsum.photos/seed/mpnews25/500/375" alt="" loading="lazy"></div><div class="body"><span class="cat-chip chip-world">विदेश</span><h3>बांग्लादेश में बाढ़ से हालात गंभीर, राहत कार्य तेज</h3><div class="meta" style="margin-top:6px"><span>3 घंटे पहले</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SPORTS ============ -->
+<section class="wide-section" id="sports">
+  <div class="container">
+    <div class="section-head">
+      <div class="title"><span class="bar" style="background:var(--sports)"></span><h2>क्रिकेट व खेल</h2></div>
+      <a class="more" href="#">सभी देखें ➔</a>
+    </div>
+    <div class="story-grid">
+      <div class="card story-card"><div class="thumb tone-sports"><img src="https://picsum.photos/seed/mpnews26/500/375" alt="" loading="lazy"><span class="play-pill"><span class="material-symbols-outlined">play_arrow</span>0:46</span></div><div class="body"><span class="cat-chip chip-sports">दलीप ट्रॉफी</span><h3>कप्तान तिलक अर्धशतक लगाकर नाबाद, तीसरे दिन साउथ जोन 242/6</h3><div class="meta" style="margin-top:6px"><span>चेन्नई • 1 घंटा पहले</span></div></div></div>
+      <div class="card story-card"><div class="thumb"><img src="https://picsum.photos/seed/mpnews27/500/375" alt="" loading="lazy"></div><div class="body"><span class="cat-chip chip-sports">हॉकी</span><h3>भारतीय हॉकी टीम नीली जर्सी में खेलेगी एशियन गेम्स</h3><div class="meta" style="margin-top:6px"><span>2 घंटे पहले</span></div></div></div>
+      <div class="card story-card"><div class="thumb tone-red"><img src="https://picsum.photos/seed/mpnews28/500/375" alt="" loading="lazy"></div><div class="body"><span class="cat-chip chip-sports">फुटबॉल</span><h3>MP प्रीमियर लीग: भोपाल FC ने जीता खिताब मुकाबला</h3><div class="meta" style="margin-top:6px"><span>4 घंटे पहले</span></div></div></div>
+      <div class="card story-card"><div class="thumb tone-biz"><img src="https://picsum.photos/seed/mpnews29/500/375" alt="" loading="lazy"></div><div class="body"><span class="cat-chip chip-sports">एशिया कप</span><h3>एशिया कप सेमीफाइनल की तारीख तय, जानें पूरा शेड्यूल</h3><div class="meta" style="margin-top:6px"><span>5 घंटे पहले</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BUSINESS ============ -->
+<section class="wide-section alt" id="business">
+  <div class="container">
+    <div class="section-head">
+      <div class="title"><span class="bar" style="background:var(--business)"></span><h2>बिजनेस व बाजार</h2></div>
+      <a class="more" href="#">सभी देखें ➔</a>
+    </div>
+    <div class="story-grid">
+      <div class="card story-card"><div class="thumb tone-biz"><img src="https://picsum.photos/seed/mpnews30/500/375" alt="" loading="lazy"></div><div class="body"><span class="cat-chip chip-biz">बुलियन मार्केट</span><h3>10 ग्राम सोना ₹374 महंगा होकर ₹1.53 लाख का हुआ</h3><div class="meta" style="margin-top:6px"><span>2 घंटे पहले</span></div></div></div>
+      <div class="card story-card"><div class="thumb"><img src="https://picsum.photos/seed/mpnews31/500/375" alt="" loading="lazy"></div><div class="body"><span class="cat-chip chip-biz">ऑटोमोबाइल</span><h3>अगस्त में इलेक्ट्रिक गाड़ियों की बिक्री 53% बढ़ी, रिकॉर्ड ग्रोथ</h3><div class="meta" style="margin-top:6px"><span>3 घंटे पहले</span></div></div></div>
+      <div class="card story-card"><div class="thumb tone-red"><img src="https://picsum.photos/seed/mpnews32/500/375" alt="" loading="lazy"></div><div class="body"><span class="cat-chip chip-biz">शेयर बाजार</span><h3>सेंसेक्स 555 अंक टूटा, बैंकिंग शेयरों में बड़ी गिरावट</h3><div class="meta" style="margin-top:6px"><span>आज</span></div></div></div>
+      <div class="card story-card"><div class="thumb tone-saffron"><img src="https://picsum.photos/seed/mpnews33/500/375" alt="" loading="lazy"></div><div class="body"><span class="cat-chip chip-biz">MP निवेश</span><h3>इंदौर-पीथमपुर बेल्ट में 50 हजार करोड़ के निवेश का दावा</h3><div class="meta" style="margin-top:6px"><span>कल</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ENTERTAINMENT ============ -->
+<section class="wide-section" id="entertainment">
+  <div class="container">
+    <div class="section-head">
+      <div class="title"><span class="bar" style="background:var(--entertainment)"></span><h2>मनोरंजन व बॉलीवुड</h2></div>
+      <a class="more" href="#">सभी देखें ➔</a>
+    </div>
+    <div class="story-grid">
+      <div class="card story-card"><div class="thumb tone-ent"><img src="https://picsum.photos/seed/mpnews34/500/375" alt="" loading="lazy"><span class="play-pill"><span class="material-symbols-outlined">play_arrow</span>0:40</span></div><div class="body"><span class="cat-chip chip-ent">फिल्म समीक्षा</span><h3>भोपाल फिल्म फेस्टिवल में दिखी नई हिंदी फिल्मों की झलक</h3><div class="meta" style="margin-top:6px"><span>1 घंटा पहले</span></div></div></div>
+      <div class="card story-card"><div class="thumb"><img src="https://picsum.photos/seed/mpnews35/500/375" alt="" loading="lazy"></div><div class="body"><span class="cat-chip chip-ent">सेलेब्रिटी</span><h3>टॉप बॉलीवुड सितारे इंदौर में फिल्म शूट के लिए पहुंचे</h3><div class="meta" style="margin-top:6px"><span>3 घंटे पहले</span></div></div></div>
+      <div class="card story-card"><div class="thumb tone-life"><img src="https://picsum.photos/seed/mpnews36/500/375" alt="" loading="lazy"></div><div class="body"><span class="cat-chip chip-ent">संगीत</span><h3>लोकसंगीत महोत्सव: MP के कलाकारों ने बांधा समां</h3><div class="meta" style="margin-top:6px"><span>5 घंटे पहले</span></div></div></div>
+      <div class="card story-card"><div class="thumb tone-red"><img src="https://picsum.photos/seed/mpnews37/500/375" alt="" loading="lazy"></div><div class="body"><span class="cat-chip chip-ent">OTT</span><h3>नई वेब सीरीज़ में दिखेगी मध्य प्रदेश की लोकेशन</h3><div class="meta" style="margin-top:6px"><span>कल</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ JOBS & EDUCATION ============ -->
+<section class="wide-section alt" id="jobs">
+  <div class="container">
+    <div class="section-head">
+      <div class="title"><span class="bar" style="background:var(--blue)"></span><h2>जॉब्स व एजुकेशन</h2></div>
+      <a class="more" href="#">सभी देखें ➔</a>
+    </div>
+    <div class="story-grid">
+      <div class="card story-card"><div class="thumb"><img src="https://picsum.photos/seed/mpnews-jobs1/500/375" alt="" loading="lazy"></div><div class="body"><span class="cat-chip chip-mp">सरकारी नौकरी</span><h3>MP पुलिस में 7500 पदों पर भर्ती, आवेदन शुरू</h3><div class="meta" style="margin-top:6px"><span>आज</span></div></div></div>
+      <div class="card story-card"><div class="thumb tone-biz"><img src="https://picsum.photos/seed/mpnews-jobs2/500/375" alt="" loading="lazy"></div><div class="body"><span class="cat-chip chip-biz">रिजल्ट</span><h3>MP बोर्ड 12वीं का रिजल्ट अगले सप्ताह होगा जारी</h3><div class="meta" style="margin-top:6px"><span>1 दिन पहले</span></div></div></div>
+      <div class="card story-card"><div class="thumb tone-life"><img src="https://picsum.photos/seed/mpnews-jobs3/500/375" alt="" loading="lazy"></div><div class="body"><span class="cat-chip chip-life">एडमिट कार्ड</span><h3>MPPSC प्री परीक्षा एडमिट कार्ड जारी, ऐसे करें डाउनलोड</h3><div class="meta" style="margin-top:6px"><span>2 दिन पहले</span></div></div></div>
+      <div class="card story-card"><div class="thumb tone-saffron"><span class="material-symbols-outlined">savings</span></div><div class="body"><span class="cat-chip chip-mp" style="background:rgba(245,130,31,.12);color:var(--saffron)">स्कॉलरशिप</span><h3>मेधावी छात्रों के लिए नई छात्रवृत्ति योजना शुरू</h3><div class="meta" style="margin-top:6px"><span>3 दिन पहले</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LIFESTYLE / ASTROLOGY / OPINION ============ -->
+<section class="wide-section" id="lifestyle">
+  <div class="container">
+    <div class="section-head">
+      <div class="title"><span class="bar" style="background:var(--lifestyle)"></span><h2>लाइफस्टाइल, हेल्थ व ज्योतिष</h2></div>
+      <a class="more" href="#" id="astrology">सभी देखें ➔</a>
+    </div>
+    <div class="story-grid">
+      <div class="card story-card"><div class="thumb tone-life"><img src="https://picsum.photos/seed/mpnews38/500/375" alt="" loading="lazy"></div><div class="body"><span class="cat-chip chip-life">हेल्थ</span><h3>बरसात में बढ़ रहे डेंगू-मलेरिया के केस, बचाव के आसान उपाय</h3><div class="meta" style="margin-top:6px"><span>2 घंटे पहले</span></div></div></div>
+      <div class="card story-card"><div class="thumb"><img src="https://picsum.photos/seed/mpnews39/500/375" alt="" loading="lazy"></div><div class="body"><span class="cat-chip chip-life">राशिफल</span><h3>आज का राशिफल: जानें सभी 12 राशियों का हाल</h3><div class="meta" style="margin-top:6px"><span>आज</span></div></div></div>
+      <div class="card story-card"><div class="thumb tone-saffron"><img src="https://picsum.photos/seed/mpnews40/500/375" alt="" loading="lazy"></div><div class="body"><span class="cat-chip chip-mp" style="background:rgba(245,130,31,.12);color:var(--saffron)">व्रत-त्योहार</span><h3>श्रावण मास 2026: महत्वपूर्ण तिथियां और पूजा विधि</h3><div class="meta" style="margin-top:6px"><span>1 दिन पहले</span></div></div></div>
+      <div class="card story-card"><div class="thumb tone-biz" id="opinion"><img src="https://picsum.photos/seed/mpnews41/500/375" alt="" loading="lazy"></div><div class="body"><span class="cat-chip chip-biz">ओपिनियन</span><h3>संपादकीय: मध्य प्रदेश में औद्योगिक विकास की नई राह</h3><div class="meta" style="margin-top:6px"><span>2 दिन पहले</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ UTILITY MODULES ============ -->
+<section class="wide-section alt">
+  <div class="container">
+    <div class="section-head">
+      <div class="title"><span class="bar" style="background:var(--blue)"></span><h2>काम की खबर</h2></div>
+    </div>
+    <div class="utility-grid">
+      <div class="util-box"><span class="material-symbols-outlined">cloud</span><span class="label">भोपाल मौसम</span><span class="val">31°C, आंशिक बादल</span><span class="sub" style="color:var(--sports)">बारिश की संभावना 60%</span></div>
+      <div class="util-box"><span class="material-symbols-outlined">local_gas_station</span><span class="label">पेट्रोल / डीजल (भोपाल)</span><span class="val">₹106.5 / ₹92.8</span><span class="sub" style="color:var(--subtle)">प्रति लीटर</span></div>
+      <div class="util-box"><span class="material-symbols-outlined">currency_exchange</span><span class="label">डॉलर / रुपया</span><span class="val">₹83.42</span><span class="sub" style="color:var(--business)">+0.12%</span></div>
+      <div class="util-box"><span class="material-symbols-outlined">event</span><span class="label">आगामी अवकाश</span><span class="val">गणेश चतुर्थी</span><span class="sub" style="color:var(--subtle)">14 सितंबर 2026</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WEATHER / CIVIC ALERTS ============ -->
+<section class="wide-section" id="epaper">
+  <div class="container">
+    <div class="section-head">
+      <div class="title"><span class="bar" style="background:var(--saffron)"></span><h2>मौसम अलर्ट व स्थानीय अपडेट</h2></div>
+      <a class="more" href="#">सभी राज्य देखें ➔</a>
+    </div>
+    <div class="alert-item"><div><p>होशंगाबाद में नर्मदा उफान पर, 40 गांवों में अलर्ट</p><span class="sub">प्रशासन ने NDRF टीमें तैनात कीं</span></div><span class="alert-badge high">हाई अलर्ट</span></div>
+    <div class="alert-item"><div><p>जबलपुर में भारी बारिश की चेतावनी अगले 48 घंटे</p><span class="sub">मौसम विभाग ने जारी किया येलो अलर्ट</span></div><span class="alert-badge med">बारिश अलर्ट</span></div>
+    <div class="alert-item"><div><p>इंदौर में सड़क मरम्मत कार्य, वैकल्पिक मार्ग सुझाए</p><span class="sub">नगर निगम ने जारी की एडवाइज़री</span></div><span class="alert-badge med">सिविक अपडेट</span></div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#home" class="logo-wrap"><img src="assets/logo.jpg" alt="एमपी न्यूज़ नेटवर्क"></a>
+        <p>एमपी न्यूज़ नेटवर्क — मध्य प्रदेश की सबसे भरोसेमंद डिजिटल न्यूज़ वेबसाइट। ताज़ा, निष्पक्ष और सटीक खबरें हिंदी में, राज्य से लेकर देश-दुनिया तक।</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook"><span class="material-symbols-outlined" style="font-size:17px">thumb_up</span></a>
+          <a href="#" aria-label="X"><span class="material-symbols-outlined" style="font-size:17px">alternate_email</span></a>
+          <a href="#" aria-label="YouTube"><span class="material-symbols-outlined" style="font-size:17px">smart_display</span></a>
+          <a href="#" aria-label="WhatsApp"><span class="material-symbols-outlined" style="font-size:17px">chat</span></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>श्रेणियां</h4>
+        <a href="#mp-news">मध्य प्रदेश</a>
+        <a href="#national">देश</a>
+        <a href="#world">विदेश</a>
+        <a href="#politics">राजनीति</a>
+        <a href="#business">बिजनेस</a>
+        <a href="#sports">खेल</a>
+      </div>
+      <div class="footer-col">
+        <h4>अन्य विभाग</h4>
+        <a href="#entertainment">मनोरंजन</a>
+        <a href="#jobs">जॉब्स-एजुकेशन</a>
+        <a href="#lifestyle">लाइफस्टाइल</a>
+        <a href="#astrology">धर्म-ज्योतिष</a>
+        <a href="#opinion">ओपिनियन</a>
+        <a href="#epaper">ई-पेपर</a>
+      </div>
+      <div class="footer-col">
+        <h4>कंपनी</h4>
+        <a href="#">हमारे बारे में</a>
+        <a href="#">संपर्क करें</a>
+        <a href="#">विज्ञापन दें</a>
+        <a href="#">गोपनीयता नीति</a>
+        <a href="#">नियम व शर्तें</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 एमपी न्यूज़ नेटवर्क। सर्वाधिकार सुरक्षित।</span>
+      <span class="legal">यह एक स्वतंत्र मूल समाचार ब्रांड है। यहां प्रकाशित सामग्री, ब्रांडिंग और डिज़ाइन मौलिक हैं।</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ MOBILE BOTTOM NAV ============ -->
+<nav class="bottom-nav">
+  <a href="#home" class="active"><span class="material-symbols-outlined">home</span>होम</a>
+  <a href="#sports"><span class="material-symbols-outlined">play_circle</span>वीडियो</a>
+  <a href="#epaper"><span class="material-symbols-outlined">newspaper</span>ई-पेपर</a>
+  <a href="#mp-news"><span class="material-symbols-outlined">location_city</span>MP</a>
+  <a href="#" id="bottomMenuBtn"><span class="material-symbols-outlined">menu</span>मेनू</a>
+</nav>
+
+<script src="script.js"></script>
+</body>
+</html>
