@@ -12,6 +12,7 @@ app.use("/api/articles", require("./routes/articles"));
 app.use("/api/categories", require("./routes/categories"));
 app.use("/api/cities", require("./routes/cities"));
 app.use("/api/users", require("./routes/users"));
+app.use("/api/seed", require("./routes/seed"));
 
 app.use(express.static(path.join(__dirname, "public")));
 

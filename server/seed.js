@@ -1,11 +1,10 @@
 const bcrypt = require("bcryptjs");
 const db = require("./db");
 
-async function run() {
+async function seedDatabase() {
   const userCountRow = await db.get("SELECT COUNT(*) c FROM users");
   if (userCountRow.c > 0) {
-    console.log("Already seeded. Skipping.");
-    return;
+    return { seeded: false, reason: "already-seeded" };
   }
 
   const users = [
@@ -149,14 +148,31 @@ async function run() {
     ]);
   }
 
-  console.log("Seed complete.");
-  console.log("Login users:");
-  console.log("  Super Admin  admin@mpnews.local    / Admin@123");
-  console.log("  Editor       editor@mpnews.local   / Editor@123");
-  console.log("  Reporter     reporter@mpnews.local / Reporter@123");
+  return {
+    seeded: true,
+    users: [
+      { role: "सुपर एडमिन", email: "admin@mpnews.local", password: "Admin@123" },
+      { role: "एडिटर", email: "editor@mpnews.local", password: "Editor@123" },
+      { role: "रिपोर्टर", email: "reporter@mpnews.local", password: "Reporter@123" },
+    ],
+  };
 }
 
-run().catch((e) => {
-  console.error(e);
-  process.exit(1);
-});
+module.exports = { seedDatabase };
+
+if (require.main === module) {
+  seedDatabase()
+    .then((result) => {
+      if (!result.seeded) {
+        console.log("Already seeded. Skipping.");
+        return;
+      }
+      console.log("Seed complete.");
+      console.log("Login users:");
+      result.users.forEach((u) => console.log(`  ${u.role}  ${u.email} / ${u.password}`));
+    })
+    .catch((e) => {
+      console.error(e);
+      process.exit(1);
+    });
+}
