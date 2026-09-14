@@ -1,16 +1,13 @@
 const bcrypt = require("bcryptjs");
 const db = require("./db");
 
-function run() {
-  const userCount = db.prepare("SELECT COUNT(*) c FROM users").get().c;
-  if (userCount > 0) {
+async function run() {
+  const userCountRow = await db.get("SELECT COUNT(*) c FROM users");
+  if (userCountRow.c > 0) {
     console.log("Already seeded. Skipping.");
     return;
   }
 
-  const insertUser = db.prepare(
-    "INSERT INTO users (name, email, password_hash, role) VALUES (?, ?, ?, ?)"
-  );
   const users = [
     ["Super Admin", "admin@mpnews.local", "Admin@123", "super_admin"],
     ["Editor Sharma", "editor@mpnews.local", "Editor@123", "editor"],
@@ -19,13 +16,15 @@ function run() {
   const userIds = {};
   for (const [name, email, pw, role] of users) {
     const hash = bcrypt.hashSync(pw, 10);
-    const info = insertUser.run(name, email, hash, role);
+    const info = await db.run("INSERT INTO users (name, email, password_hash, role) VALUES (?, ?, ?, ?)", [
+      name,
+      email,
+      hash,
+      role,
+    ]);
     userIds[role] = info.lastInsertRowid;
   }
 
-  const insertCat = db.prepare(
-    "INSERT INTO categories (slug, name, color_var) VALUES (?, ?, ?)"
-  );
   const categories = [
     ["mp-news", "मध्य प्रदेश", "--blue"],
     ["national", "देश", "--politics"],
@@ -42,13 +41,10 @@ function run() {
   ];
   const catIds = {};
   for (const [slug, name, color] of categories) {
-    const info = insertCat.run(slug, name, color);
+    const info = await db.run("INSERT INTO categories (slug, name, color_var) VALUES (?, ?, ?)", [slug, name, color]);
     catIds[slug] = info.lastInsertRowid;
   }
 
-  const insertCity = db.prepare(
-    "INSERT INTO cities (slug, name) VALUES (?, ?)"
-  );
   const cities = [
     ["bhopal", "भोपाल"],
     ["indore", "इंदौर"],
@@ -60,15 +56,15 @@ function run() {
   ];
   const cityIds = {};
   for (const [slug, name] of cities) {
-    const info = insertCity.run(slug, name);
+    const info = await db.run("INSERT INTO cities (slug, name) VALUES (?, ?)", [slug, name]);
     cityIds[slug] = info.lastInsertRowid;
   }
 
-  const insertArticle = db.prepare(`
+  const insertArticleSql = `
     INSERT INTO articles
       (title, summary, image_url, category_id, city_id, is_breaking, is_featured, is_published, video_duration, author_id, published_at)
     VALUES (?, ?, ?, ?, ?, ?, ?, 1, ?, ?, datetime('now', ?))
-  `);
+  `;
 
   const seedImg = (n) => `https://picsum.photos/seed/mpnews${n}/500/375`;
   const editor = userIds.editor;
@@ -139,7 +135,7 @@ function run() {
 
   for (const a of articles) {
     const [title, summary, image, catSlug, citySlug, breaking, featured, dur, author, offset] = a;
-    insertArticle.run(
+    await db.run(insertArticleSql, [
       title,
       summary,
       image,
@@ -149,8 +145,8 @@ function run() {
       featured,
       dur,
       author,
-      offset
-    );
+      offset,
+    ]);
   }
 
   console.log("Seed complete.");
@@ -160,4 +156,7 @@ function run() {
   console.log("  Reporter     reporter@mpnews.local / Reporter@123");
 }
 
-run();
+run().catch((e) => {
+  console.error(e);
+  process.exit(1);
+});

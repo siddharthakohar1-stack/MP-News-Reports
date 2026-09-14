@@ -1,11 +1,26 @@
 const path = require("path");
-const Database = require("better-sqlite3");
+const { createClient } = require("@libsql/client");
 
-const db = new Database(path.join(__dirname, "data", "mpnews.db"));
-db.pragma("journal_mode = WAL");
-db.pragma("foreign_keys = ON");
+let client;
 
-db.exec(`
+function getClient() {
+  if (client) return client;
+
+  if (process.env.TURSO_DATABASE_URL) {
+    client = createClient({
+      url: process.env.TURSO_DATABASE_URL,
+      authToken: process.env.TURSO_AUTH_TOKEN,
+    });
+  } else {
+    // Local dev fallback: file-based libSQL (SQLite-compatible), no Turso account needed.
+    client = createClient({
+      url: "file:" + path.join(__dirname, "data", "mpnews.db"),
+    });
+  }
+  return client;
+}
+
+const SCHEMA = `
 CREATE TABLE IF NOT EXISTS users (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   name TEXT NOT NULL,
@@ -50,6 +65,42 @@ CREATE TABLE IF NOT EXISTS articles (
 CREATE INDEX IF NOT EXISTS idx_articles_category ON articles(category_id);
 CREATE INDEX IF NOT EXISTS idx_articles_city ON articles(city_id);
 CREATE INDEX IF NOT EXISTS idx_articles_published ON articles(is_published, published_at);
-`);
+`;
 
-module.exports = db;
+let initPromise = null;
+
+async function ensureSchema() {
+  if (!initPromise) {
+    const db = getClient();
+    const statements = SCHEMA.split(";").map((s) => s.trim()).filter(Boolean);
+    initPromise = (async () => {
+      for (const sql of statements) {
+        await db.execute(sql);
+      }
+    })();
+  }
+  return initPromise;
+}
+
+// Thin helper matching the shape we use across routes: query(sql, args) -> rows array
+async function query(sql, args = []) {
+  await ensureSchema();
+  const db = getClient();
+  const res = await db.execute({ sql, args });
+  return res.rows;
+}
+
+// run(sql, args) -> {lastInsertRowid, changes}
+async function run(sql, args = []) {
+  await ensureSchema();
+  const db = getClient();
+  const res = await db.execute({ sql, args });
+  return { lastInsertRowid: res.lastInsertRowid, changes: res.rowsAffected };
+}
+
+async function get(sql, args = []) {
+  const rows = await query(sql, args);
+  return rows[0] || null;
+}
+
+module.exports = { query, run, get, ensureSchema };

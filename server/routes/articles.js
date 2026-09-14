@@ -5,7 +5,6 @@ const { requireAuth, requireRole } = require("../middleware/auth");
 const router = express.Router();
 
 const CAN_WRITE = requireRole("super_admin", "editor", "reporter", "video_editor", "photo_editor");
-const CAN_PUBLISH = requireRole("super_admin", "editor");
 const CAN_DELETE = requireRole("super_admin", "editor");
 
 const SELECT_BASE = `
@@ -49,13 +48,12 @@ function serialize(row) {
   };
 }
 
-// PUBLIC LIST (with admin override: ?all=1 requires auth to see drafts)
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
   const { category, city, breaking, featured, limit, all } = req.query;
   const clauses = [];
   const params = [];
 
-  if (all === "1" && req.session.user) {
+  if (all === "1" && req.user) {
     // admin view: allow drafts
   } else {
     clauses.push("a.is_published = 1");
@@ -79,34 +77,32 @@ router.get("/", (req, res) => {
     params.push(Number(limit));
   }
 
-  const rows = db.prepare(sql).all(...params);
+  const rows = await db.query(sql, params);
   res.json(rows.map(serialize));
 });
 
-router.get("/:id", (req, res) => {
-  const row = db.prepare(SELECT_BASE + " WHERE a.id = ?").get(req.params.id);
+router.get("/:id", async (req, res) => {
+  const row = await db.get(SELECT_BASE + " WHERE a.id = ?", [req.params.id]);
   if (!row) return res.status(404).json({ error: "आर्टिकल नहीं मिला" });
-  if (!row.is_published && !req.session.user) return res.status(404).json({ error: "आर्टिकल नहीं मिला" });
-  db.prepare("UPDATE articles SET views = views + 1 WHERE id = ?").run(req.params.id);
+  if (!row.is_published && !req.user) return res.status(404).json({ error: "आर्टिकल नहीं मिला" });
+  await db.run("UPDATE articles SET views = views + 1 WHERE id = ?", [req.params.id]);
   res.json(serialize(row));
 });
 
-router.post("/", CAN_WRITE, (req, res) => {
+router.post("/", CAN_WRITE, async (req, res) => {
   const b = req.body || {};
   if (!b.title || !b.title.trim()) return res.status(400).json({ error: "शीर्षक आवश्यक है" });
 
-  const role = req.session.user.role;
+  const role = req.user.role;
   const canPublish = role === "super_admin" || role === "editor";
   const isPublished = canPublish ? (b.is_published ? 1 : 0) : 0;
   const isBreaking = canPublish && b.is_breaking ? 1 : 0;
   const isFeatured = canPublish && b.is_featured ? 1 : 0;
 
-  const info = db
-    .prepare(
-      `INSERT INTO articles (title, summary, body, image_url, category_id, city_id, is_breaking, is_featured, is_published, video_duration, author_id)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
-    )
-    .run(
+  const info = await db.run(
+    `INSERT INTO articles (title, summary, body, image_url, category_id, city_id, is_breaking, is_featured, is_published, video_duration, author_id)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    [
       b.title.trim(),
       b.summary || "",
       b.body || "",
@@ -117,19 +113,20 @@ router.post("/", CAN_WRITE, (req, res) => {
       isFeatured,
       isPublished,
       b.video_duration || null,
-      req.session.user.id
-    );
+      req.user.id,
+    ]
+  );
 
-  const row = db.prepare(SELECT_BASE + " WHERE a.id = ?").get(info.lastInsertRowid);
+  const row = await db.get(SELECT_BASE + " WHERE a.id = ?", [info.lastInsertRowid]);
   res.status(201).json(serialize(row));
 });
 
-router.put("/:id", requireAuth, (req, res) => {
-  const existing = db.prepare("SELECT * FROM articles WHERE id = ?").get(req.params.id);
+router.put("/:id", requireAuth, async (req, res) => {
+  const existing = await db.get("SELECT * FROM articles WHERE id = ?", [req.params.id]);
   if (!existing) return res.status(404).json({ error: "आर्टिकल नहीं मिला" });
 
-  const role = req.session.user.role;
-  const isOwner = existing.author_id === req.session.user.id;
+  const role = req.user.role;
+  const isOwner = existing.author_id === req.user.id;
   const canWrite = ["super_admin", "editor", "reporter", "video_editor", "photo_editor"].includes(role);
   const canPublish = role === "super_admin" || role === "editor";
 
@@ -150,29 +147,30 @@ router.put("/:id", requireAuth, (req, res) => {
     is_published: canPublish && b.is_published !== undefined ? (b.is_published ? 1 : 0) : existing.is_published,
   };
 
-  db.prepare(
+  await db.run(
     `UPDATE articles SET title=?, summary=?, body=?, image_url=?, category_id=?, city_id=?, video_duration=?, is_breaking=?, is_featured=?, is_published=?, updated_at=datetime('now')
-     WHERE id=?`
-  ).run(
-    next.title,
-    next.summary,
-    next.body,
-    next.image_url,
-    next.category_id,
-    next.city_id,
-    next.video_duration,
-    next.is_breaking,
-    next.is_featured,
-    next.is_published,
-    req.params.id
+     WHERE id=?`,
+    [
+      next.title,
+      next.summary,
+      next.body,
+      next.image_url,
+      next.category_id,
+      next.city_id,
+      next.video_duration,
+      next.is_breaking,
+      next.is_featured,
+      next.is_published,
+      req.params.id,
+    ]
   );
 
-  const row = db.prepare(SELECT_BASE + " WHERE a.id = ?").get(req.params.id);
+  const row = await db.get(SELECT_BASE + " WHERE a.id = ?", [req.params.id]);
   res.json(serialize(row));
 });
 
-router.delete("/:id", CAN_DELETE, (req, res) => {
-  db.prepare("DELETE FROM articles WHERE id = ?").run(req.params.id);
+router.delete("/:id", CAN_DELETE, async (req, res) => {
+  await db.run("DELETE FROM articles WHERE id = ?", [req.params.id]);
   res.json({ ok: true });
 });
 
