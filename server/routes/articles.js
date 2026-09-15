@@ -17,6 +17,32 @@ const SELECT_BASE = `
   LEFT JOIN users u ON u.id = a.author_id
 `;
 
+const ALLOWED_TAGS = new Set(["p", "h2", "h3", "b", "strong", "i", "em", "u", "ul", "ol", "li", "blockquote", "a", "br", "div"]);
+
+function sanitizeBodyHtml(html) {
+  if (!html) return "";
+  // Strip script/style blocks entirely (including their content).
+  let out = html.replace(/<(script|style)[^>]*>[\s\S]*?<\/\1>/gi, "");
+  // Drop disallowed tags, keep their inner text/children; strip all attributes
+  // except a safe href on <a> (blocking javascript: URLs).
+  out = out.replace(/<\/?([a-zA-Z0-9]+)([^>]*)>/g, (match, tagRaw, attrs) => {
+    const tag = tagRaw.toLowerCase();
+    const isClose = match[1] === "/";
+    if (!ALLOWED_TAGS.has(tag)) return "";
+    if (isClose) return `</${tag}>`;
+    if (tag === "a") {
+      const hrefMatch = attrs.match(/href\s*=\s*("([^"]*)"|'([^']*)')/i);
+      const href = hrefMatch ? hrefMatch[2] || hrefMatch[3] || "" : "";
+      if (href && !/^\s*javascript:/i.test(href)) {
+        return `<a href="${href.replace(/"/g, "&quot;")}" target="_blank" rel="noopener noreferrer">`;
+      }
+      return "<a>";
+    }
+    return `<${tag}>`;
+  });
+  return out;
+}
+
 function timeAgoHi(iso) {
   const then = new Date(iso.replace(" ", "T") + "Z").getTime();
   const diffMin = Math.max(0, Math.round((Date.now() - then) / 60000));
@@ -105,7 +131,7 @@ router.post("/", CAN_WRITE, async (req, res) => {
     [
       b.title.trim(),
       b.summary || "",
-      b.body || "",
+      sanitizeBodyHtml(b.body || ""),
       b.image_url || "",
       b.category_id || null,
       b.city_id || null,
@@ -137,7 +163,7 @@ router.put("/:id", requireAuth, async (req, res) => {
   const next = {
     title: b.title !== undefined ? b.title : existing.title,
     summary: b.summary !== undefined ? b.summary : existing.summary,
-    body: b.body !== undefined ? b.body : existing.body,
+    body: b.body !== undefined ? sanitizeBodyHtml(b.body) : existing.body,
     image_url: b.image_url !== undefined ? b.image_url : existing.image_url,
     category_id: b.category_id !== undefined ? b.category_id : existing.category_id,
     city_id: b.city_id !== undefined ? b.city_id : existing.city_id,

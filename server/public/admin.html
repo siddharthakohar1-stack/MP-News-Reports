@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <title>एडमिन पैनल — एमपी न्यूज़ नेटवर्क</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" href="assets/logo.jpg">
+<link rel="icon" href="/assets/logo.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,300..600,0..1,-50..200&family=Noto+Sans+Devanagari:wght@400;600;700;800&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="admin.css">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/admin.css">
 </head>
 <body class="admin-body">
 
@@ -16,7 +16,7 @@
   <!-- SIDEBAR -->
   <aside class="admin-sidebar" id="sidebar">
     <div class="admin-brand">
-      <img src="assets/logo.jpg" alt="लोगो">
+      <img src="/assets/logo.jpg" alt="लोगो">
       <span>एमपी न्यूज़<br>एडमिन</span>
     </div>
     <nav class="admin-nav">
@@ -25,7 +25,7 @@
       <a href="#categories" data-view="categories" data-role="super_admin,editor"><span class="material-symbols-outlined">category</span>श्रेणियां</a>
       <a href="#cities" data-view="cities" data-role="super_admin,editor"><span class="material-symbols-outlined">location_city</span>शहर</a>
       <a href="#users" data-view="users" data-role="super_admin"><span class="material-symbols-outlined">group</span>यूज़र्स</a>
-      <a href="index.html" target="_blank"><span class="material-symbols-outlined">open_in_new</span>वेबसाइट देखें</a>
+      <a href="/" target="_blank"><span class="material-symbols-outlined">open_in_new</span>वेबसाइट देखें</a>
     </nav>
   </aside>
 
@@ -110,7 +110,27 @@
             </div>
             <div class="field">
               <label>पूरा आर्टिकल (Body)</label>
-              <textarea id="fBody" rows="5"></textarea>
+              <div class="rte" id="fBodyRte">
+                <div class="rte-toolbar" id="fBodyToolbar">
+                  <button type="button" data-cmd="bold" title="बोल्ड"><b>B</b></button>
+                  <button type="button" data-cmd="italic" title="इटैलिक"><i>I</i></button>
+                  <button type="button" data-cmd="underline" title="अंडरलाइन"><u>U</u></button>
+                  <span class="rte-sep"></span>
+                  <button type="button" data-cmd="formatBlock" data-value="H2" title="हेडिंग 2">H2</button>
+                  <button type="button" data-cmd="formatBlock" data-value="H3" title="हेडिंग 3">H3</button>
+                  <button type="button" data-cmd="formatBlock" data-value="P" title="पैराग्राफ">P</button>
+                  <span class="rte-sep"></span>
+                  <button type="button" data-cmd="insertUnorderedList" title="बुलेट लिस्ट">•⁠—</button>
+                  <button type="button" data-cmd="insertOrderedList" title="नंबर लिस्ट">1.—</button>
+                  <button type="button" data-cmd="formatBlock" data-value="BLOCKQUOTE" title="कोट">"</button>
+                  <span class="rte-sep"></span>
+                  <button type="button" data-cmd="createLink" title="लिंक जोड़ें">🔗</button>
+                  <button type="button" data-cmd="unlink" title="लिंक हटाएं">🔗✕</button>
+                  <button type="button" data-cmd="removeFormat" title="फॉर्मेटिंग हटाएं">✕</button>
+                </div>
+                <div class="rte-editor" id="fBodyEditor" contenteditable="true"></div>
+              </div>
+              <textarea id="fBody" name="body" style="display:none"></textarea>
             </div>
             <div class="field-row">
               <div class="field">
@@ -209,6 +229,6 @@
   </div>
 </div>
 
-<script src="admin.js"></script>
+<script src="/admin.js"></script>
 </body>
 </html>

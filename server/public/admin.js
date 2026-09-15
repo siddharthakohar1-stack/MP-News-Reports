@@ -57,7 +57,7 @@
       init();
     })
     .catch(function () {
-      window.location.href = "login.html";
+      window.location.href = "/login";
     });
 
   function applyRoleVisibility() {
@@ -115,7 +115,7 @@
   // ===== LOGOUT =====
   document.getElementById("logoutBtn").addEventListener("click", function () {
     api("/api/auth/logout", { method: "POST" }).then(function () {
-      window.location.href = "login.html";
+      window.location.href = "/login";
     });
   });
 
@@ -138,6 +138,7 @@
     });
     document.getElementById("articleForm").addEventListener("submit", onArticleFormSubmit);
     document.getElementById("fImage").addEventListener("input", updateImagePreview);
+    initRte();
 
     document.getElementById("filterCategory").addEventListener("change", loadArticles);
     document.getElementById("filterCity").addEventListener("change", loadArticles);
@@ -262,11 +263,47 @@
     }
   }
 
+  function initRte() {
+    var editor = document.getElementById("fBodyEditor");
+    var toolbar = document.getElementById("fBodyToolbar");
+    editor.setAttribute("data-placeholder", "यहां पूरा आर्टिकल लिखें...");
+
+    toolbar.addEventListener("click", function (e) {
+      var btn = e.target.closest("button[data-cmd]");
+      if (!btn) return;
+      e.preventDefault();
+      editor.focus();
+      var cmd = btn.getAttribute("data-cmd");
+      var val = btn.getAttribute("data-value") || null;
+      if (cmd === "createLink") {
+        var url = window.prompt("लिंक URL डालें:", "https://");
+        if (!url) return;
+        document.execCommand(cmd, false, url);
+      } else {
+        document.execCommand(cmd, false, val);
+      }
+      syncRteToTextarea();
+    });
+
+    editor.addEventListener("input", syncRteToTextarea);
+    editor.addEventListener("paste", function (e) {
+      e.preventDefault();
+      var text = (e.clipboardData || window.clipboardData).getData("text/plain");
+      document.execCommand("insertText", false, text);
+    });
+  }
+
+  function syncRteToTextarea() {
+    document.getElementById("fBody").value = document.getElementById("fBodyEditor").innerHTML;
+  }
+
   function openArticleForm(id) {
     showView("article-form");
     state.editingArticleId = id;
     var form = document.getElementById("articleForm");
     form.reset();
+    document.getElementById("fBodyEditor").innerHTML = "";
+    document.getElementById("fBody").value = "";
     document.getElementById("fImagePreviewWrap").style.display = "none";
 
     if (!id) {
@@ -279,6 +316,7 @@
       document.getElementById("articleId").value = a.id;
       document.getElementById("fTitle").value = a.title;
       document.getElementById("fSummary").value = a.summary || "";
+      document.getElementById("fBodyEditor").innerHTML = a.body || "";
       document.getElementById("fBody").value = a.body || "";
       document.getElementById("fCategory").value = a.category ? a.category.id : "";
       document.getElementById("fCity").value = a.city ? a.city.id : "";
@@ -293,6 +331,7 @@
 
   function onArticleFormSubmit(e) {
     e.preventDefault();
+    syncRteToTextarea();
     var id = document.getElementById("articleId").value;
     var payload = {
       title: document.getElementById("fTitle").value.trim(),

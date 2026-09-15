@@ -14,7 +14,15 @@ app.use("/api/cities", require("./routes/cities"));
 app.use("/api/users", require("./routes/users"));
 app.use("/api/seed", require("./routes/seed"));
 
-app.use(express.static(path.join(__dirname, "public")));
+const PUBLIC_DIR = path.join(__dirname, "public");
+
+app.get("/login", (req, res) => res.sendFile(path.join(PUBLIC_DIR, "login.html")));
+app.get("/admin", (req, res) => res.sendFile(path.join(PUBLIC_DIR, "admin.html")));
+app.get("/login.html", (req, res) => res.redirect(301, "/login"));
+app.get("/admin.html", (req, res) => res.redirect(301, "/admin"));
+app.get("/index.html", (req, res) => res.redirect(301, "/"));
+
+app.use(express.static(PUBLIC_DIR));
 
 if (require.main === module) {
   const PORT = process.env.PORT || 3000;

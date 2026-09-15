@@ -38,6 +38,23 @@ body.admin-body{background:var(--surface)}
 }
 .field textarea{height:auto;padding:10px 12px;resize:vertical}
 
+/* RICH TEXT EDITOR */
+.rte{border:1px solid var(--border);border-radius:8px;overflow:hidden;background:#fff}
+.rte-toolbar{display:flex;flex-wrap:wrap;gap:2px;padding:6px;border-bottom:1px solid var(--border);background:var(--surface)}
+.rte-toolbar button{height:30px;min-width:30px;padding:0 8px;border:1px solid transparent;border-radius:6px;background:transparent;font-size:12.5px;font-weight:700;color:var(--ink);cursor:pointer;font-family:inherit}
+.rte-toolbar button:hover{background:var(--border)}
+.rte-toolbar button.active{background:var(--ink);color:#fff}
+.rte-sep{width:1px;background:var(--border);margin:4px 4px}
+.rte-editor{min-height:180px;max-height:480px;overflow-y:auto;padding:12px;font-size:13.5px;line-height:1.8;color:var(--ink)}
+.rte-editor:focus{outline:none}
+.rte-editor h2{font-size:19px;font-weight:800;margin:14px 0 8px}
+.rte-editor h3{font-size:16px;font-weight:800;margin:12px 0 6px}
+.rte-editor p{margin:0 0 10px}
+.rte-editor ul,.rte-editor ol{margin:0 0 10px 22px}
+.rte-editor blockquote{margin:0 0 10px;padding:6px 14px;border-left:3px solid var(--saffron,#f5821f);color:var(--ink-soft);background:var(--surface)}
+.rte-editor a{color:var(--saffron,#f5821f);text-decoration:underline}
+.rte-editor:empty:before{content:attr(data-placeholder);color:var(--subtle)}
+
 /* TABLE */
 .table-card{padding:0;overflow-x:auto}
 .admin-table{width:100%;border-collapse:collapse;font-size:13px;min-width:640px}

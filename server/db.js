@@ -1,3 +1,4 @@
+const fs = require("fs");
 const path = require("path");
 const { createClient } = require("@libsql/client");
 
@@ -13,8 +14,10 @@ function getClient() {
     });
   } else {
     // Local dev fallback: file-based libSQL (SQLite-compatible), no Turso account needed.
+    const dataDir = path.join(__dirname, "data");
+    fs.mkdirSync(dataDir, { recursive: true });
     client = createClient({
-      url: "file:" + path.join(__dirname, "data", "mpnews.db"),
+      url: "file:" + path.join(dataDir, "mpnews.db"),
     });
   }
   return client;
