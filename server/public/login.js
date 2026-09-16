@@ -7,7 +7,7 @@
   fetch("/api/auth/me", { credentials: "same-origin" })
     .then(function (r) { return r.ok ? r.json() : null; })
     .then(function (data) {
-      if (data && data.user) window.location.href = "admin.html";
+      if (data && data.user) window.location.href = "/admin";
     });
 
   form.addEventListener("submit", function (e) {
@@ -34,7 +34,7 @@
           btn.textContent = "लॉगिन करें";
           return;
         }
-        window.location.href = "admin.html";
+        window.location.href = "/admin";
       })
       .catch(function () {
         errorBox.textContent = "सर्वर से संपर्क नहीं हो सका";
